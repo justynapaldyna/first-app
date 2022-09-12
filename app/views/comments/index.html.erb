@@ -1,0 +1,18 @@
+<h1>Comments</h1>
+<table>
+    <tr>
+        <th>Comment ID</th>
+        <th>Comment Content</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <% @comments.each do |comment| %>
+    <tr>
+        <td><%= comment.id %></td>
+        <td><%= link_to comment.content, comment_path(comment) %></td>
+        <td><%= link_to 'Edit Comment', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Delete Comment', comment_path(comment), method: :destroy %></td>
+    </tr>
+    <% end %>
+</table>
+<%= link_to 'Add new comment', new_comment_path %>

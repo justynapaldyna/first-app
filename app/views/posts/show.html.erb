@@ -1,3 +1,12 @@
 <% presenter = PostPresenter.new(@post) %>
-Title: <%= presenter.parsed_title %>
-Body: <%= presenter.body %>
+<p>Title: <%= presenter.parsed_title %></p>
+<p>Body: <%= presenter.body %></p>
+<p>
+Comments:
+</p>
+<% @comments.each do |comment| %>
+<p>
+  <% comment_presenter = CommentPresenter.new(comment) %>
+  <%= comment_presenter.parsed_content %>
+<% end %>
+</p>

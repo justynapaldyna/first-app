@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+  before_action :set_post, only: [:edit, :update, :show, :destroy]
 
   def index
     @posts = Posts::Sort.new(Posts::Recent.call).call   
@@ -9,8 +10,7 @@ class PostsController < ApplicationController
         @post = Post.new 
   end
     
-  def edit 
-        @post = Post.find(params[:id])   
+  def edit       
   end
     
   def create
@@ -24,7 +24,6 @@ class PostsController < ApplicationController
       
     
   def update
-    @post = Post.find(params[:id])
       if @post.update(post_params)
         redirect_to posts_path
       else
@@ -32,12 +31,11 @@ class PostsController < ApplicationController
       end
   end    
     
-  def show
-        @post = Post.find(params[:id]) 
+  def show 
+        @comments = Comments::Sort.new(Comments::Post.new(@post.id).call).call
   end
            
   def destroy
-    @post = Post.find(params[:id])
       if @post.destroy
         flash[:notice] = 'Post has been destroyed'
         redirect_to posts_path
@@ -48,6 +46,9 @@ class PostsController < ApplicationController
   end
   
   private
+      def set_post
+        @post = Post.find(params[:id])
+      end
          
       def post_params
         params.require(:post).permit(:title, :body)

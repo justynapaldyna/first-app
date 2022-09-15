@@ -1,16 +1,16 @@
 class HomeController < ApplicationController
   def create
   end
-  def new 
+  def new
   end
-  def edit 
+  def edit
   end
   def show
-    @id =params[:id] 
+    @id =params[:id]
   end
   def index
     @message = 'Cześć'
-    
+
   end
   def update
   end

@@ -3,4 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "popper"
 import "bootstrap"
+require("../scripts/users");
 

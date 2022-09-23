@@ -1,0 +1,14 @@
+<div class='navbar bg-light'>
+  <div class="container">
+    <span class='navbar-text'>
+      <% if current_user %>
+        <%= "Logged as #{current_user.name}" %>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Menu', root_path %>
+      <% else %>
+        <%= link_to 'Log in', new_user_session_path %>
+        <%= link_to 'Register', new_user_registration_path %>
+      <% end %>
+    </span>
+  </div>
+</div>

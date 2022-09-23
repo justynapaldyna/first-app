@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
     def index
         @comments = Comment.all
         @comment = Comment.new
@@ -13,7 +14,7 @@ class CommentsController < ApplicationController
     end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
       if @comment.save
         redirect_to comments_path
       else

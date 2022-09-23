@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @posts = Posts::Sort.new(Posts::Recent.call).call
+    @posts = Posts::Sort.new(Posts::Recent.call).call.page(params[:page])
   end
 
   def new
@@ -48,6 +49,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :image)
   end
 end

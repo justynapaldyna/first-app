@@ -1,5 +1,12 @@
 <% presenter = PostPresenter.new(@post) %>
 <p>Title: <%= presenter.parsed_title %></p>
+
+<p>
+<% if presenter.image.persisted? %>
+  Image: <%= image_tag presenter.image, width: '100px' %>
+<% end %>
+</p>
+
 <p>Body: <%= presenter.body %></p>
 <p>
 Comments:

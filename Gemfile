@@ -35,6 +35,9 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
+gem 'kaminari'
+
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

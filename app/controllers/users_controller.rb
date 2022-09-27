@@ -34,11 +34,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
       @user = User.find(params[:id])
-    else 
-      render 'home#index'
-    end
   end
 
   def destroy
@@ -54,6 +50,6 @@ class UsersController < ApplicationController
   private
 
       def user_params
-        params.require(:user).permit(:name)
+        params.require(:user).permit(:name, :email, :password, :avatar)
       end
 end

@@ -1,1 +1,4 @@
 <%= @user.name %>
+<% if current_user.avatar.persisted? %>
+  Image: <%= image_tag current_user.avatar, width: '100px' %>
+<% end %>

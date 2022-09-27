@@ -12,7 +12,7 @@
         <td><%= post.id %></td>
         <td><%= link_to post.title, post_path(post) %></td>
         <td><%= link_to 'Edit Post', edit_post_path(post) %></td>
-        <td><%= link_to 'Delete Post', post_path(post), method: :delete %></td>
+        <td><%= button_to 'Delete Post', post_path(post), method: :delete, data: { turbo_method: :delete } %></td>
     </tr>
     <% end %>
 </table>

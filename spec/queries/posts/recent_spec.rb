@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Posts::Recent do
   describe '.call' do
     let!(:post_1) { create(:post, updated_at: 31.days.ago) }
+    let(:user) { create(:user) }
     subject { described_class.call }
 
     context 'without recent posts present' do

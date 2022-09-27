@@ -13,44 +13,44 @@ class CommentsController < ApplicationController
         @comment = Comment.find(params[:id])
     end
 
-  def create
-    @comment = current_user.comments.build(comment_params)
-      if @comment.save
-        redirect_to comments_path
-      else
-        render :new
-      end
-  end
+    def create
+      @comment = current_user.comments.build(comment_params)
+        if @comment.save
+          redirect_to comments_path
+        else
+          render :new
+        end
+    end
 
 
 
-  def update
-    @comment = Comment.find(params[:id])
-      if @comment.update(comment_params)
-        redirect_to comments_path
-      else
-        render :edit
-      end
-  end
+    def update
+      @comment = Comment.find(params[:id])
+        if @comment.update(comment_params)
+          redirect_to comments_path
+        else
+          render :edit
+        ends
+    end
 
-  def show
-        @comment = Comment.find(params[:id])
-  end
+    def show
+          @comment = Comment.find(params[:id])
+    end
 
-  def destroy
-    @comment = Comment.find(params[:id])
-      if @comment.destroy
-        flash[:notice] = 'Comment has been destroyed'
-        redirect_to comments_path
-      else
-        flash[:alert] = 'Something went wrong'
-        redirect_to comments_path
-      end
-  end
+    def destroy
+      @comment = Comment.find(params[:id])
+        if @comment.destroy
+          flash[:notice] = 'Comment has been destroyed'
+          redirect_to comments_path
+        else
+          flash[:alert] = 'Something went wrong'
+          redirect_to comments_path
+        end
+    end
 
-  private
+    private
 
       def comment_params
         params.require(:comment).permit(:content, :post_id, :user_id)
-      end
+      end   
 end

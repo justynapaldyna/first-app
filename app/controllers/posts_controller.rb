@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def create
-    @post = Posts::Create.new(post_params).call
+    @post = Posts::Create.new(post_params.merge(user: current_user)).call
     redirect_to posts_path
     rescue ActiveRecord::RecordInvalid => invalid
       @post = invalid.record

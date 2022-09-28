@@ -13,12 +13,11 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  DELETE /resource/sign_out
-   def destroy
-     super do 
-      return redirect_to after_sign_out_path_for(resource_name), status: :see_other
-     end
-   end
+  # DELETE /resource/sign_out
+  # def destroy
+  #   super  
+  #   return redirect_to after_sign_out_path_for(resource_name), status: :see_other  
+  # end
 
   # protected
 

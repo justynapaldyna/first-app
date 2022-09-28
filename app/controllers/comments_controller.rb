@@ -1,56 +1,55 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
     def index
-        @comments = Comment.all
-        @comment = Comment.new
+      @comments = Comment.all
+      @comment = Comment.new
     end
 
     def new
-        @comment = Comment.new
+      @comment = Comment.new
     end
 
     def edit
-        @comment = Comment.find(params[:id])
+      @comment = Comment.find(params[:id])
     end
 
-  def create
-    @comment = current_user.comments.build(comment_params)
+    def create
+      @comment = current_user.comments.build(comment_params)
       if @comment.save
         redirect_to comments_path
       else
         render :new
       end
-  end
+    end
 
 
 
-  def update
-    @comment = Comment.find(params[:id])
+    def update
+      @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
         redirect_to comments_path
       else
         render :edit
       end
-  end
+    end
 
-  def show
-        @comment = Comment.find(params[:id])
-  end
+    def show
+      @comment = Comment.find(params[:id])
+    end
 
-  def destroy
-    @comment = Comment.find(params[:id])
+    def destroy
+      @comment = Comment.find(params[:id])
       if @comment.destroy
-        flash[:notice] = 'Comment has been destroyed'
-        redirect_to comments_path
+        flash[:notice] = 'Comment has been destroyed'  
       else
         flash[:alert] = 'Something went wrong'
-        redirect_to comments_path
       end
-  end
+      redirect_to comments_path
+    end
 
-  private
+    private
 
-      def comment_params
-        params.require(:comment).permit(:content, :post_id, :user_id)
-      end
+    def comment_params
+      params.require(:comment).permit(:content, :post_id, :user_id)
+    end   
 end

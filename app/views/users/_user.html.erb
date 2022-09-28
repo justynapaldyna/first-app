@@ -1,8 +1,11 @@
 <%= form_with model: @user do |form| %>
-    <%= form.label :name %>
+  <%= form.label :name %>
     <div class='mb-3 col-md-2'>
-    <%= form.text_field :name, class: 'form-control' %>
+      <%= form.text_field :name, class: 'form-control' %>
     </div>
-    <%= form.submit 'Create User', class: 'btn btn-success' %>
-  <% end %>
-  
+    <div class='mb-3 col-md-2'>
+      <%= form.label :avatar %><br />
+      <%= form.file_field :avatar, accept: 'image/png, image/jpg, image/jpeg', class: 'form-control' %>
+    </div>
+  <%= form.submit 'Submit', class: 'btn btn-success' %>
+<% end %>

@@ -13,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'POST #create' do
     subject { post :create, params: params }
     context 'valid params' do
-      let(:params) { { user: { name: 'Name' } } }
+      let(:params) { { user: { name: 'Name', email: 'someemail@gmail.com', password: 'somepassword' } } }
 
       it 'creates user' do
         expect{ subject }.to change{ User.count }.by(1)
@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'invalid params' do
-      let(:params) { { user: { name: nil } } }
+      let(:params) { { user: { name: nil, email: 'someemail@gmail.com', password: 'somepassword' } } }
 
       it 'doesnt create user' do
         expect{subject}.not_to change{ User.count }

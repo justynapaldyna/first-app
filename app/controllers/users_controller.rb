@@ -34,26 +34,23 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
       @user = User.find(params[:id])
-    else 
-      render 'home#index'
-    end
   end
 
   def destroy
     @user = User.find(params[:id])
-      if @user.destroy
-        flash[:notice] = 'User has been destroyed'
-        redirect_to users_path
-      else
-        flash[:alert] = 'Something went wrong'
-        redirect_to users_path
-      end
+    if @user.destroy
+    flash[:notice] = 'User has been destroyed'
+    redirect_to users_path
+    else
+    flash[:alert] = 'Something went wrong'
+    redirect_to users_path
+    end
   end
-  private
 
-      def user_params
-        params.require(:user).permit(:name)
-      end
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :avatar)
+  end
+
 end

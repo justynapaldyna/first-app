@@ -4,4 +4,5 @@ import "controllers"
 import "popper"
 import "bootstrap"
 require("../scripts/users");
-
+//= require jquery
+//= require jquery_ujs
